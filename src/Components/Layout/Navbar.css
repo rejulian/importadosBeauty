@@ -11,6 +11,10 @@ a{
     background-color: var(--primary) !important;
 }
 
+.css-5o9at3 .MuiDrawer-paper{
+    background-color: var(--primary) !important;
+}
+
 .logo{
     width: 50px;
 }
