@@ -34,7 +34,6 @@ const LoginForm = () => {
                     email: res.user.email,
                     role: userDoc.data().role
                 }
-                console.log(finalUser)
                 loginContext(finalUser)
                 navigate('/')
             }
@@ -46,7 +45,12 @@ const LoginForm = () => {
     const handleLoginWithGoogle = async (e) => {
         try {
             const res = await onSignInWithGoogle();
+            const finalUser = {
+                email: res.user.email,
+                role: "user"
+            }
             if(res.user){
+                loginContext(finalUser)
                 navigate('/')
             }
         } catch (error) {
