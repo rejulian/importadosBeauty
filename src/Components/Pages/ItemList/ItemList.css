@@ -67,16 +67,17 @@
 
 @media(max-width:790px) {
     .mySwiper {
-        max-width: 425px !important;
+        max-width: 195px !important;
         padding: 0 !important;
     }
 
     .card-container {
         width: 195px !important;
+        box-shadow: none;
     }
 
     .swiper-slide {
         display: block !important;
-        width: 215px !important;
+        width: 195px !important;
     }
 }
