@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const Cart = () => {
 
     const navigate = useNavigate()
-    const { cart, clearCart, deleteById } = useContext(CartContext)
+    const { cart, clearCart } = useContext(CartContext)
 
     const handleFinish = () => {
         navigate('/checkout')

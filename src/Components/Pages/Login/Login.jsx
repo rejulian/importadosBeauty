@@ -11,7 +11,6 @@ const Login = () => {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            // backgroundColor: theme.palette.secondary.main,
         }}>
             <LoginForm/>
         </Box>

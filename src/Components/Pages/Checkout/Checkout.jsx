@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../../Context/CartContext'
+import { ClipLoader } from 'react-spinners';
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react"
 import Axios from 'axios'
 import { AuthContext } from '../../../Context/AuthContext';
@@ -18,6 +19,8 @@ const Checkout = () => {
     const location = useLocation()
     const queryParams = new URLSearchParams(location.search)
     const paramValue = queryParams.get("status")
+    const [isFormValid, setIsFormValid] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
     const [userData, setUserData] = useState({
         name: "",
         lastname: "",
@@ -58,10 +61,17 @@ const Checkout = () => {
         const shipmentCollection = collection(db, "shipment")
         const shipmentDoc = doc(shipmentCollection, import.meta.env.VITE_SHIPMENT_ID)
         getDoc(shipmentDoc)
-        .then(res=>{
-            setShipmentCost(res.data().cost)
-        })
-    },[])
+            .then(res => {
+                setShipmentCost(res.data().cost)
+            })
+    }, [])
+
+    useEffect(() => {
+        // Verificar si todos los campos obligatorios están llenos
+        const { name, lastname, phone, dni, province, city, zipCode, address } = userData;
+        const allFieldsFilled = name && lastname && phone && dni && province && city && zipCode && address;
+        setIsFormValid(allFieldsFilled);
+    }, [userData]);
 
     const createPreference = async () => {
         const newCartArray = cart.map(product => {
@@ -92,9 +102,11 @@ const Checkout = () => {
             items: cart,
         }
         localStorage.setItem("order", JSON.stringify(order))
+        setIsLoading(true)
         const id = await createPreference()
         if (id) {
             setPreferenceId(id)
+            setIsLoading(false)
         }
     }
 
@@ -124,17 +136,22 @@ const Checkout = () => {
                                     <TextField required className='checkout-form-input' name='zipCode' label='Codigo postal' type='number' onChange={handleChange} />
                                 </div>
                                 <TextField required className='checkout-form-input' name='address' label='Direccion' fullWidth onChange={handleChange} />
+                                <Button disabled={!isFormValid} variant='contained' onClick={handleBuy} fullWidth>
+                                    {isLoading ? 
+                                    <ClipLoader color="#fffff" loading={isLoading} size={40} />
+                                    : 'Seleccione metodo de pago'
+                                    }
+                                </Button>
                             </form>
-                            <Button variant='outlined' onClick={handleBuy} fullWidth>Seleccione metodo de pago</Button>
 
                         </div>
                     </> : <>
                         <h2>Pago realizado con exito. Numero de compra: {orderId}</h2>
                     </>
                 }
-                
-                {       
-                    preferenceId && <Wallet initialization={{ preferenceId, redirectMode: "self" }} />
+
+                {
+                    preferenceId && isFormValid && <Wallet  initialization={{ preferenceId, redirectMode: "self" }} />
                 }
             </section>
         </main>

@@ -58,6 +58,13 @@
     border: 2px solid var(--primary) !important;
 }
 
+.no-stock{
+    background-color: black;
+    color: white;
+    width: 200px;
+    text-align: center;
+}
+
 @media(max-width:825px){
     .card-detail{
         width: 95%;

@@ -69,6 +69,7 @@ const LoginForm = () => {
                     name='password'
                     id='outlined-adornment-password'
                     type={showPassword ? "text" : "password"}
+                    fullWidth
                     endAdornment={
                         <InputAdornment position='end'>
                             <IconButton

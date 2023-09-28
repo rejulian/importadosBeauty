@@ -34,28 +34,32 @@ const ItemDetail = ({ product }) => {
                 <h3>${unit_price}</h3>
                 <p>{description}</p>
                 <FormControl className='card-detail-form' fullWidth>
-                    <InputLabel id="demo-simple-select-label">Cantidad</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        label="Cantidad"
-                        value={counter}
-                        onChange={e => setCounter(e.target.value)}
-                    >
-                        {stockOptions.map((_, index) => (
-                            <MenuItem key={index + 1} value={index + 1}>
-                                {index + 1}
-                            </MenuItem>
-                        ))}
-                    </Select>
+                    {stock > 0 ?
+                        <>
+                            <InputLabel id="demo-simple-select-label">Cantidad</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                label="Cantidad"
+                                value={counter}
+                                onChange={e => setCounter(e.target.value)}
+                            >
+                                {stockOptions.map((_, index) => (
+                                    <MenuItem key={index + 1} value={index + 1}>
+                                        {index + 1}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </>
+                        : <h3 className='no-stock'>SIN STOCK</h3>}
                     <div className='card-detail-btn'>
-                        <Button className='btn-comprar' variant='contained'>Comprar ahora</Button>
-                        <Button onClick={onAdd} className='btn-agregar' variant='outlined'>Agregar al carrito</Button>
+                        <Button style={{ cursor: stock > 0 ? 'pointer' : 'not-allowed', visibility: stock > 0 ? 'visible' : 'hidden' }} className='btn-comprar' variant='contained'>Comprar ahora</Button>
+                        <Button style={{ cursor: stock > 0 ? 'pointer' : 'not-allowed', visibility: stock > 0 ? 'visible' : 'hidden' }} onClick={onAdd} className='btn-agregar' variant='outlined'>Agregar al carrito</Button>
                     </div>
                 </FormControl>
             </div>
             <Snackbar
-                anchorOrigin={{ vertical : 'bottom', horizontal : 'center' }}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 open={isAlertOpen}
                 autoHideDuration={3000}
                 onClose={() => setIsAlertOpen(false)}
