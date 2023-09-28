@@ -67,7 +67,7 @@ const ItemListContainer = () => {
                   modules={[Pagination, Navigation]}
                   breakpoints={{
                     0: {
-                      slidesPerView: 1,
+                      slidesPerView: 2,
                       spaceBetween: 10
                     },
                     790: {
@@ -104,7 +104,7 @@ const ItemListContainer = () => {
                   breakpoints={{
                     0: {
                       slidesPerView: 2,
-                      spaceBetween: 0
+                      spaceBetween: 10
                     },
                     790: {
                       slidesPerView: 3,
