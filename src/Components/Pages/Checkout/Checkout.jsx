@@ -68,7 +68,7 @@ const Checkout = () => {
             return { title: product.title, unit_price: product.unit_price, quantity: product.quantity }
         })
         try {
-            const response = await Axios.post("http://localhost:8080/create_preference", {
+            const response = await Axios.post("https://backend-importados.vercel.app/create_preference", {
                 items: newCartArray,
                 shipment_cost: shipmentCost
             })
