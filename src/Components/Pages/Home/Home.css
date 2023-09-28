@@ -30,6 +30,13 @@ main{
     letter-spacing: 2px;
 }
 
+#main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
 @media (max-width: 520px){
     #hero{
         height: 50vh;
