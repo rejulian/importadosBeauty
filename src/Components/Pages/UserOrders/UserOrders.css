@@ -1,3 +1,50 @@
 #orders{
     margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 150px);
+}
+
+#orders h1{
+    margin-bottom: 20px;
+}
+
+.empty-orders{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.empty-orders p{
+    font-size: 20px;
+}
+
+.order-container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.order-card{
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0px 0px 6px 0px rgb(137 137 137 / 50%);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.order-card-information{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-card-information img{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
 }

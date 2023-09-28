@@ -38,7 +38,7 @@ const Home = () => {
         <h2>productos del exterior a tu alcance</h2>
       </section>
       <main id='main'>
-        <h1>Lo mas destacado</h1>
+        <h1>Lo más destacado</h1>
         <Swiper
           className='mySwiper'
           slidesPerView={4}
