@@ -1,0 +1,45 @@
+main{
+    margin: 0;
+    padding: 0 !important;
+    background-color: whitesmoke !important;
+}
+#hero{
+    height: 85vh;
+    background-image: url('../../../images/homeBanner.webp');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#hero p {
+    letter-spacing: 3px;
+}
+
+#hero h1{
+    font-size: 3rem;
+}
+
+#hero h2{
+    font-size: 2rempx;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 520px){
+    #hero{
+        height: 50vh;
+    }
+
+    #hero h1{
+        font-size: 2rem;
+    }
+
+    #hero h2{
+        font-size: 1rem;
+    }
+}

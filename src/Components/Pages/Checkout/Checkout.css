@@ -1,0 +1,37 @@
+#checkout {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px);
+}
+
+#checkout section {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.checkout-form-personal {
+    display: flex;
+    gap: 10px;
+}
+
+.order-form {
+    box-shadow: 0px 2px 5px 0px rgb(137 137 137 / 50%);
+    border-radius: 10px;
+    width: 100%;
+    padding: 40px 20px;
+}
+
+.order-form h1 {
+    margin-bottom: 10px;
+}

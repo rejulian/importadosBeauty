@@ -1,0 +1,12 @@
+a{
+    text-decoration: none;
+}
+
+.css-93hrkz-MuiPaper-root-MuiAppBar-root, .css-mdyg66-MuiModal-root-MuiDrawer-root .MuiDrawer-paper{
+    background-color: var(--primary) !important;
+    box-shadow: none !important;
+}
+
+.logo{
+    width: 50px;
+}

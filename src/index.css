@@ -1,0 +1,24 @@
+:root{
+    --primary : #e9dbdb;
+    --secondary : #ffc1c1;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.btn{
+    background-color: var(--primary);
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.loading-spinner{
+    text-align: center;
+}

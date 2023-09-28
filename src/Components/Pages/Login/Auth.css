@@ -1,0 +1,43 @@
+.auth-form{
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 30px;
+    box-shadow: 0px 0px 6px 0px rgb(137 137 137 / 50%);
+    border-radius: 10px;
+    background-color: white;
+}
+
+.auth-form h1{
+    text-align: center;
+}
+
+.links{
+    color: var(--secondary);
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.icon{
+    width: 20px;
+}
+
+.btn-google{
+    display: flex;
+    gap: 10px;
+}
+
+@media(max-width: 490px){
+
+    .auth-form h1{
+        font-size: 20px;
+    }
+
+    .auth-form p{
+        font-size: 14px;
+        text-align: center;
+    }
+}

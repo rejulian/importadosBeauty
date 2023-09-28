@@ -1,0 +1,82 @@
+#shop {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.mySwiper {
+    max-width: 960px;
+    height: 430px;
+    padding: 10px !important;
+}
+
+.card-container {
+    width: 220px !important;
+    height: 390px;
+    display: block !important;
+    background-color: white;
+    box-shadow: 0px 2px 5px 0px rgb(137 137 137 / 50%);
+    border-radius: 5px;
+    color: black;
+    overflow: hidden;
+}
+
+.card-container:hover {
+    box-shadow: 0px 0px 11px 1px rgb(137 137 137 / 50%);
+}
+
+.card-container img {
+    width: 100%;
+    border-bottom: 1px solid rgb(232, 232, 232);
+    height: 75%;
+    object-fit: contain;
+    /* object-fit: cover; */
+}
+
+.card-text {
+    padding: 20px 10px;
+
+}
+
+.card-text h4 {
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.card-text p {
+    font-size: 15px;
+    color: rgb(79, 79, 79);
+}
+
+.swiper-slide {
+    display: block !important;
+    width: 220px !important;
+}
+
+
+@media(max-width:1020px){
+    .mySwiper {
+        max-width: 715px !important;
+        padding: 0 !important;
+    }
+
+}
+
+@media(max-width:790px) {
+    .mySwiper {
+        max-width: 425px !important;
+        padding: 0 !important;
+    }
+
+    .card-container {
+        width: 195px !important;
+    }
+
+    .swiper-slide {
+        display: block !important;
+        width: 215px !important;
+    }
+}
