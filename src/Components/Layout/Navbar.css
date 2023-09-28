@@ -1,15 +1,16 @@
-a {
+a{
     text-decoration: none;
 }
 
-.css-93hrkz-MuiPaper-root-MuiAppBar-root,
-.css-mdyg66-MuiModal-root-MuiDrawer-root .MuiDrawer-paper,
-.css-q3bifl,
-.css-5o9at3 .MuiDrawer-paper {
+.css-93hrkz-MuiPaper-root-MuiAppBar-root, .css-mdyg66-MuiModal-root-MuiDrawer-root .MuiDrawer-paper, .css-q3bifl{
     background-color: var(--primary) !important;
     box-shadow: none !important;
 }
 
-.logo {
+.css-q3bifl{
+    background-color: var(--primary) !important;
+}
+
+.logo{
     width: 50px;
 }
