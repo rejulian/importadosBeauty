@@ -51,7 +51,8 @@ const ItemDetail = ({ product }) => {
                                 ))}
                             </Select>
                         </>
-                        : <h3 className='no-stock'>SIN STOCK</h3>}
+                        : <div className='no-stock'><h3>SIN STOCK</h3></div>
+                    }
                     <div className='card-detail-btn'>
                         <Button style={{ cursor: stock > 0 ? 'pointer' : 'not-allowed', visibility: stock > 0 ? 'visible' : 'hidden' }} className='btn-comprar' variant='contained'>Comprar ahora</Button>
                         <Button style={{ cursor: stock > 0 ? 'pointer' : 'not-allowed', visibility: stock > 0 ? 'visible' : 'hidden' }} onClick={onAdd} className='btn-agregar' variant='outlined'>Agregar al carrito</Button>
