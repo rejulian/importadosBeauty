@@ -14,6 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from '@mui/icons-material/Login';
+import ShopIcon from '@mui/icons-material/Shop';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import Logo from '../../images/logo.jpeg';
 import { Link, Outlet, useNavigate } from "react-router-dom";
@@ -74,17 +75,34 @@ function Navbar(props) {
         }
 
         {isLogged ? (
-          <ListItem disablePadding>
-            <ListItemButton onClick={handleLogOut}>
-              <ListItemIcon>
-                <LogoutIcon sx={{ color: "black" }} />
-              </ListItemIcon>
-              <ListItemText
-                primary={"Cerrar sesion"}
-                sx={{ color: "black" }}
-              />
-            </ListItemButton>
-          </ListItem>
+          <>
+            <Link to={'/user-orders'}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <ShopIcon sx={{ color: "black" }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={"Mis compras"}
+                    sx={{ color: "black" }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+
+            <ListItem disablePadding>
+              <ListItemButton onClick={handleLogOut}>
+                <ListItemIcon>
+                  <LogoutIcon sx={{ color: "black" }} />
+                </ListItemIcon>
+                <ListItemText
+                  primary={"Cerrar sesion"}
+                  sx={{ color: "black" }}
+                />
+              </ListItemButton>
+            </ListItem>
+          </>
+
 
         ) : (
           <>
