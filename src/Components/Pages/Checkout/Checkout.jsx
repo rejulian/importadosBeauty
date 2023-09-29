@@ -137,21 +137,24 @@ const Checkout = () => {
                                 </div>
                                 <TextField required className='checkout-form-input' name='address' label='Direccion' fullWidth onChange={handleChange} />
                                 <Button disabled={!isFormValid} variant='contained' onClick={handleBuy} fullWidth>
-                                    {isLoading ? 
-                                    <ClipLoader color="#fffff" loading={isLoading} size={40} />
-                                    : 'Seleccione metodo de pago'
+                                    {isLoading ?
+                                        <ClipLoader color="#fffff" loading={isLoading} size={40} />
+                                        : 'Seleccione metodo de pago'
                                     }
                                 </Button>
                             </form>
 
                         </div>
                     </> : <>
-                        <h2>Pago realizado con exito. Numero de compra: {orderId}</h2>
+                        <main id='succesfull-order'>
+                            <h2>Pago realizado con éxito. Código de compra: {orderId}</h2>
+                            <Link className='btn' to='/shop'>Volver</Link>
+                        </main>
                     </>
                 }
 
                 {
-                    preferenceId && isFormValid && <Wallet  initialization={{ preferenceId, redirectMode: "self" }} />
+                    preferenceId && isFormValid && <Wallet initialization={{ preferenceId, redirectMode: "self" }} />
                 }
             </section>
         </main>

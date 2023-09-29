@@ -35,3 +35,9 @@
 .order-form h1 {
     margin-bottom: 10px;
 }
+
+#succesfull-order{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

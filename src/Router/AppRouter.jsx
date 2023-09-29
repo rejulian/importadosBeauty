@@ -7,32 +7,35 @@ import ProtectedAdmin from './ProtectedAdmin'
 import ProtectedUsers from './ProtectedUsers'
 import Checkout from '../Components/Pages/Checkout/Checkout'
 import UserOrders from '../Components/Pages/UserOrders/UserOrders'
+import Footer from '../Components/Layout/Footer/Footer'
 
 const AppRouter = () => {
   return (
-    <Routes>
-      <Route element={<Navbar />} >
-        {routes.map(({ id, path, Element }) => (
-          <Route key={id} path={path} element={<Element />} />
-        ))}
-      </Route>
-
-      {/* PROTECTED ROUTE FOR LOGGED USERS */}
-      <Route element={<ProtectedUsers />}>
+    <>
+      <Routes>
         <Route element={<Navbar />} >
-          <Route path='/checkout' element={<Checkout />} />
-          <Route path='/user-orders' element={<UserOrders />} />
+          {routes.map(({ id, path, Element }) => (
+            <Route key={id} path={path} element={<Element />} />
+          ))}
         </Route>
-      </Route>
 
-      {/* PROTECTED ROUTE FOR ADMINS */}
-      <Route element={<ProtectedAdmin />}>
-        <Route element={<Navbar />} >
-          <Route path='/dashboard' element={<Dashboard />} />
+        {/* PROTECTED ROUTE FOR LOGGED USERS */}
+        <Route element={<ProtectedUsers />}>
+          <Route element={<Navbar />} >
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='/user-orders' element={<UserOrders />} />
+          </Route>
         </Route>
-      </Route>
 
-    </Routes>
+        {/* PROTECTED ROUTE FOR ADMINS */}
+        <Route element={<ProtectedAdmin />}>
+          <Route element={<Navbar />} >
+            <Route path='/dashboard' element={<Dashboard />} />
+          </Route>
+        </Route>
+      </Routes>
+      <Footer />
+    </>
   )
 }
 
