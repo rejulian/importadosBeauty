@@ -41,8 +41,12 @@ const ProductsForm = ({ handleClose, setIsChange, productSelected, setProductSel
 
         if (productSelected) {
             setIsLoading(true)
-            const url = await uploadFile(file)
-            const updatedProduct = { ...productSelected, image: url }
+            let updatedProduct = { ...productSelected };
+            if(file){
+                const url = await uploadFile(file)
+                updatedProduct = { ...updatedProduct, image: url };
+            }
+            // const updatedProduct = { ...productSelected, image: url }
 
             updateDoc(doc(productsCollection, updatedProduct.id), updatedProduct)
                 .then(()=>{
