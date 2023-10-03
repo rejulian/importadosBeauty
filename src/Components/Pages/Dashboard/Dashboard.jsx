@@ -35,7 +35,7 @@ const Dashboard = () => {
   return (
     <main id='dashboard'>
       {
-        isLoading ? <ClipLoader color="#ffc1c1" loading={isLoading} size={70}/> : <ProductsList products={products} setIsChange={setIsChange}/>
+        isLoading ? <ClipLoader color="#ffc1c1" loading={isLoading} size={70}/> : <ProductsList products={products} setProducts={setProducts} setIsChange={setIsChange}/>
       }
     </main>
   )

@@ -28,14 +28,22 @@ const style = {
     p: 4,
 };
 
-const ProductsList = ({ products, setIsChange }) => {
+const ProductsList = ({ products, setIsChange, setProducts }) => {
 
     const [open, setOpen] = useState(false)
     const [productSelected, setProductSelected] = useState(null)
 
     const deleteProduct = (id) => {
         deleteDoc(doc(db, "products", id))
-        setIsChange(true)
+            .then(() => {
+                const updatedProducts = products.filter((product) => product.id !== id);
+                setProducts(updatedProducts);
+
+                setIsChange(true);
+            })
+            .catch((error) => {
+                console.error("Error al eliminar el producto", error);
+            });
     }
 
     const handleClose = () => {
@@ -97,8 +105,8 @@ const ProductsList = ({ products, setIsChange }) => {
             >
                 <Box sx={style}>
                     <ProductsForm
-                        handleClose={handleClose} 
-                        setIsChange={setIsChange} 
+                        handleClose={handleClose}
+                        setIsChange={setIsChange}
                         productSelected={productSelected}
                         setProductSelected={setProductSelected}
                     />
