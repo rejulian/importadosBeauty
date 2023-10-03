@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
-import {getFirestore} from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { v4 } from "uuid";
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_APIKEY,
@@ -15,6 +17,7 @@ const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app)
 const auth = getAuth(app);
+const storage = getStorage(app)
 const googleProvider = new GoogleAuthProvider();
 
 
@@ -58,4 +61,11 @@ export const onLogOut = () => {
     signOut(auth);
 }
 
+//STORAGE
 
+export const uploadFile = async (file) => {
+    const storageRef = ref(storage, v4())
+    await uploadBytes(storageRef, file)
+    let url = await getDownloadURL(storageRef)
+    return url
+}
