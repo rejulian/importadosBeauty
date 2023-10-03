@@ -1,11 +1,11 @@
 import { Button, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { db, uploadFile } from '../../../firebaseConfig'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore'
 import { ClipLoader } from 'react-spinners';
 
 
-const ProductsForm = ({ handleClose, setIsChange }) => {
+const ProductsForm = ({ handleClose, setIsChange, productSelected, setProductSelected }) => {
 
     const [file, setFile] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
@@ -25,31 +25,55 @@ const ProductsForm = ({ handleClose, setIsChange }) => {
     // }
 
     const handleChange = (e) => {
-        setNewProduct({ ...newProduct, [e.target.name]: e.target.value })
+        if (productSelected) {
+            setProductSelected({
+                ...productSelected,
+                [e.target.name]: e.target.value
+            })
+        } else {
+            setNewProduct({ ...newProduct, [e.target.name]: e.target.value })
+        }
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setIsLoading(true)
-        const url = await uploadFile(file)
-        const updatedProduct = { ...newProduct, image: url }
-        // console.log(updatedProduct);
         const productsCollection = collection(db, "products")
-        addDoc(productsCollection, updatedProduct)
-            .then(() => {
-                setIsChange(true)
-                setIsLoading(false)
-                handleClose()
-            })
+
+        if (productSelected) {
+            setIsLoading(true)
+            const url = await uploadFile(file)
+            const updatedProduct = { ...productSelected, image: url }
+
+            updateDoc(doc(productsCollection, updatedProduct.id), updatedProduct)
+                .then(()=>{
+                    setIsChange(true)
+                    setIsLoading(false)
+                    handleClose()
+                })
+        } else {
+            setIsLoading(true)
+            const url = await uploadFile(file)
+            const updatedProduct = { ...newProduct, image: url }
+
+            addDoc(productsCollection, updatedProduct)
+                .then(() => {
+                    setIsChange(true)
+                    setIsLoading(false)
+                    handleClose()
+                })
+        }
     }
+
+// 13.55
 
     return (
         <form onSubmit={handleSubmit} className='product-form'>
             {
-                isLoading ? <ClipLoader color="#ffc1c1" loading={isLoading} size={70}/> : (
+                isLoading ? <ClipLoader color="#ffc1c1" loading={isLoading} size={70} /> : (
                     <>
-                        <h1>Agregar producto</h1>
+                        {productSelected ? <h1>Editar producto</h1> : <h1>Agregar producto</h1>}
                         <TextField
+                            defaultValue={productSelected?.title}
                             label="Nombre"
                             name='title'
                             variant='outlined'
@@ -57,6 +81,7 @@ const ProductsForm = ({ handleClose, setIsChange }) => {
                             fullWidth
                         />
                         <TextField
+                            defaultValue={productSelected?.description}
                             label="Descripcion"
                             name='description'
                             variant='outlined'
@@ -64,6 +89,7 @@ const ProductsForm = ({ handleClose, setIsChange }) => {
                             fullWidth
                         />
                         <TextField
+                            defaultValue={productSelected?.unit_price}
                             label="Precio"
                             type='number'
                             name='unit_price'
@@ -72,6 +98,7 @@ const ProductsForm = ({ handleClose, setIsChange }) => {
                             fullWidth
                         />
                         <TextField
+                            defaultValue={productSelected?.category}
                             label="Categoria"
                             name='category'
                             variant='outlined'
@@ -79,6 +106,7 @@ const ProductsForm = ({ handleClose, setIsChange }) => {
                             fullWidth
                         />
                         <TextField
+                            defaultValue={productSelected?.stock}
                             label="Stock"
                             type='number'
                             name='stock'
@@ -89,9 +117,10 @@ const ProductsForm = ({ handleClose, setIsChange }) => {
                         <div className='select-form'>
                             <InputLabel id="promote">Destacar</InputLabel>
                             <Select
+                                defaultValue={productSelected?.promote ? productSelected.promote : newProduct.promote}
                                 labelId="promote"
                                 id="demo-simple-select"
-                                value={newProduct.promote}
+                                // value={newProduct.promote}
                                 name='promote'
                                 fullWidth
                                 onChange={handleChange}
@@ -107,7 +136,7 @@ const ProductsForm = ({ handleClose, setIsChange }) => {
                             fullWidth
                             onChange={(e) => setFile(e.target.files[0])}
                         />
-                        <Button fullWidth variant='contained' type='submit'>Crear</Button>
+                        <Button fullWidth variant='contained' type='submit'>{productSelected ? 'Editar' : 'Crear'}</Button>
                     </>
                 )
             }

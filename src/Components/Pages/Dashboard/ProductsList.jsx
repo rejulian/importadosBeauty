@@ -31,10 +31,7 @@ const style = {
 const ProductsList = ({ products, setIsChange }) => {
 
     const [open, setOpen] = useState(false)
-
-    const editProduct = (id) => {
-        console.log(id);
-    }
+    const [productSelected, setProductSelected] = useState(null)
 
     const deleteProduct = (id) => {
         deleteDoc(doc(db, "products", id))
@@ -45,9 +42,14 @@ const ProductsList = ({ products, setIsChange }) => {
         setOpen(false)
     }
 
+    const handleOpen = (product) => {
+        setProductSelected(product)
+        setOpen(true)
+    }
+
     return (
         <>
-            <Button variant='contained' className='btn' onClick={()=>setOpen(true)}> <AddIcon />Agregar</Button>
+            <Button variant='contained' className='btn' onClick={() => handleOpen(null)}> <AddIcon />Agregar</Button>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -74,7 +76,7 @@ const ProductsList = ({ products, setIsChange }) => {
                                 <TableCell align="right">{product.stock}</TableCell>
                                 <TableCell align="right">{product.category}</TableCell>
                                 <TableCell component="th" scope="row" align="right">
-                                    <IconButton onClick={() => editProduct(product.id)}>
+                                    <IconButton onClick={() => handleOpen(product)}>
                                         <EditIcon color='primary' />
                                     </IconButton>
                                     <IconButton onClick={() => deleteProduct(product.id)}>
@@ -94,7 +96,12 @@ const ProductsList = ({ products, setIsChange }) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <ProductsForm handleClose={handleClose} setIsChange={setIsChange}/>
+                    <ProductsForm
+                        handleClose={handleClose} 
+                        setIsChange={setIsChange} 
+                        productSelected={productSelected}
+                        setProductSelected={setProductSelected}
+                    />
                 </Box>
             </Modal>
         </>

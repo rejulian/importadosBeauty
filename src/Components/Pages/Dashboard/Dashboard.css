@@ -7,8 +7,16 @@
 }
 
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root{
-    width: 80% !important;
+    max-width: 80% !important;
     margin-bottom: 40px !important;
+}
+
+.css-13xy2my{
+    width: 90% !important;
+}
+
+.css-18qulp9{
+    width: 100% !important;
 }
 
 .product-form{
