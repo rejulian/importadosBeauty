@@ -33,7 +33,7 @@ const ProductsForm = ({ handleClose, setIsChange }) => {
         setIsLoading(true)
         const url = await uploadFile(file)
         const updatedProduct = { ...newProduct, image: url }
-        console.log(updatedProduct);
+        // console.log(updatedProduct);
         const productsCollection = collection(db, "products")
         addDoc(productsCollection, updatedProduct)
             .then(() => {
@@ -91,7 +91,7 @@ const ProductsForm = ({ handleClose, setIsChange }) => {
                             <Select
                                 labelId="promote"
                                 id="demo-simple-select"
-                                value={false}
+                                value={newProduct.promote}
                                 name='promote'
                                 fullWidth
                                 onChange={handleChange}
